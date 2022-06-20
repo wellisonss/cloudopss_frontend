@@ -1,34 +1,41 @@
-import { useState, useEffect } from 'react'
-import axios from "axios"
+import { GlocalStyle } from "./styles/global";
+import Modal from "react-modal"
+import { ClientsProvider } from "./hooks/useClients";
+import { PopUpModal } from "./components/PopUpModal";
+import { useState } from "react";
+import { ClientForm } from "./components/ClientForm";
 
-type Client = {
-  name: string;
-  email: string;
-}
+Modal.setAppElement('#root');
 
 function App() {
-  const [clients, setClients] = useState<Client[]>([])
 
-  useEffect(()=>{
-    axios.get('http://localhost:5000/clients').then(response => {
-      setClients(response.data);
-      console.log(response.data)
-    })
-  }, [])
+  const [isNewClientModalOpen, setIsNewClientModalOpen] = useState(false);
 
+  function handleOpenNewClientModal () {
+
+    setIsNewClientModalOpen(true);
+
+  }
+
+  function handleCloseNewClientModal () {
+
+    setIsNewClientModalOpen(false);
+    
+  }
 
   return (
-    <ul>
-      {clients.map(repo => {
-        return (
-          <li key={repo.name}>
-            <strong>{repo.name}</strong>
-            <p>{repo.email}</p>
-          </li>
-        )
-      })}
-    </ul>
-  )
+    <ClientsProvider >
+    
+    <ClientForm onOpenPopUp={handleOpenNewClientModal}/>
+
+    <PopUpModal 
+         isOpen = {isNewClientModalOpen}
+         onRequestClose = {handleCloseNewClientModal}
+    />
+    <GlocalStyle />
+    </ClientsProvider>
+  ); 
+
 }
 
 export default App

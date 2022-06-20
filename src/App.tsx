@@ -7,7 +7,7 @@ import { ClientForm } from "./components/ClientForm";
 
 Modal.setAppElement('#root');
 
-function App() {
+export function App() {
 
   const [isNewClientModalOpen, setIsNewClientModalOpen] = useState(false);
 
@@ -37,5 +37,3 @@ function App() {
   ); 
 
 }
-
-export default App

@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components'
 
 export const GlocalStyle = createGlobalStyle`
   :root {
@@ -26,6 +26,7 @@ export const GlocalStyle = createGlobalStyle`
 
   body {
     background: var(--background);
+    height: 100vh;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -67,6 +68,4 @@ export const GlocalStyle = createGlobalStyle`
     padding: 3rem;
     position: relative;
   }
-  }
-
 `

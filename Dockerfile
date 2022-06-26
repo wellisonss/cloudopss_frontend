@@ -1,14 +1,15 @@
-FROM node:18.4.0
+FROM node
 
 WORKDIR /app
 
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+COPY package.json ./
 
 ADD . .
 
 RUN npm install
 
-ENTRYPOINT ["/entrypoint.sh"]
+COPY . .
+
+EXPOSE 3000
 
 CMD ["npm", "start"]
